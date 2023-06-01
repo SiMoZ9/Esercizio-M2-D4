@@ -22,46 +22,75 @@ const marco = {
     isAmbassador: true,
   }
   
-  const paul = {
+const paul = {
     name: "Paul",
     lastName: "Flynn",
     isAmbassador: false,
-  }
-  
-  const amy = {
+}
+
+const amy = {
     name: "Amy",
     lastName: "Reed",
     isAmbassador: false,
-  }
-  
-const prices = [34, 5, 2]
-let tot_carello_amb;
-let tot_carello;
+}
+
+const fernando = {
+    name: "Fernando",
+    lastName: "Peppini",
+    isAmbassador: true,
+}
+
+const prices = [34, 10202, 232, 2]
+
+let utenti = [];
+let amb = [];
+
+let tot_carello_amb = 0;
+let tot_carello = 0;
 const shippingCost = 50
-let utenteCheEffettuaLAcquisto = amy //cambia il valore qui per provare se il tuo algoritmo funziona!
+let utenteCheEffettuaLAcquisto = fernando //cambia il valore qui per provare se il tuo algoritmo funziona!
 
 if (utenteCheEffettuaLAcquisto.isAmbassador) {
 
-    console.log(`${utenteCheEffettuaLAcquisto.name} e' un ambassador`);
-    for (let i = 0; i < prices.length; i++)    for (let i = 0; i < prices.length; i++)
-    tot_carello += prices[i];
-
-tot_carello_amb = (tot_carello * 30) / 100;
-
-console.log(`Il carrello scontato (spedizione esclusa) è di: ${tot_carello_amb}`);
-console.log(`Il carrello scontato (spedizione inclusa) è di: ${tot_carello_amb + shippingCost}`);
+    console.log(`${utenteCheEffettuaLAcquisto.name} è un ambassador`);
+    for (let i = 0; i < prices.length; i++)
         tot_carello += prices[i];
 
-    tot_carello_amb = (tot_carello * 30) / 100;
+    tot_carello_amb = tot_carello - (tot_carello * 30) / 100;
 
-    console.log(`Il carrello scontato (spedizione esclusa) è di: ${tot_carello_amb}`);
-    console.log(`Il carrello scontato (spedizione inclusa) è di: ${tot_carello_amb + shippingCost}`);
+    console.log(`Il carrello scontato (spedizone esclusa) è di: ${tot_carello_amb}\n\n\n`);
+
+    if (tot_carello_amb > 100)
+        console.log(`La spedizione è gratis!\n Il carrello è di: ${tot_carello_amb}\n\n\n`);
+    
+    else
+        console.log(`Devi pagare la spedizone\nIl carrello scontato (spedizione inclusa) è di: ${tot_carello_amb + shippingCost}\n\n\n`);
 
 } else {
     console.log(`${utenteCheEffettuaLAcquisto.name} non è un ambassador`);
     for (let i = 0; i < prices.length; i++)
         tot_carello += prices[i];
-
-    console.log(`Il carrello scontato (spedizione esclusa) è di: ${tot_carello}`);
-    console.log(`Il carrello scontato (spedizione inclusa) è di: ${tot_carello + shippingCost}`);
+    
+    if (tot_carello > 100)
+        console.log(`La spedizione è gratis!\n Il carrello è di: ${tot_carello}\n\n\n`);
+    
+    else
+        console.log(`Devi pagare la spedizone\nIl carrello (spedizione inclusa) è di: ${tot_carello + shippingCost}\n\n\n`);
 }
+
+utenti.push(marco, paul, amy, fernando);
+
+for (let i = 0; i < utenti.length; i++) {
+    
+    if (utenti[i].isAmbassador) {
+        console.log(`${utenti[i].name} ${utenti[i].lastName} è un ambassador`);
+        amb.push(utenti[i]);
+    } else {
+        console.log(`${utenti[i].name} ${utenti[i].lastName} non è un ambassador`);
+    }
+}
+
+console.log("\n\n\nGli ambassador sono: ");
+
+for (let i = 0; i < amb.length; i++)
+    console.log(`${amb[i].name} ${amb[i].lastName}`);
