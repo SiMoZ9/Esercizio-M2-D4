@@ -40,6 +40,13 @@ const fernando = {
     isAmbassador: true,
 }
 
+const simone = {
+    name: "Simone",
+    lastName: "Panci",
+    isAmbassador: true,
+}
+
+
 const prices = [34, 10202, 232, 2]
 
 let utenti = [];
@@ -48,14 +55,15 @@ let amb = [];
 let tot_carello_amb = 0;
 let tot_carello = 0;
 const shippingCost = 50
-let utenteCheEffettuaLAcquisto = fernando //cambia il valore qui per provare se il tuo algoritmo funziona!
+let utenteCheEffettuaLAcquisto = simone //cambia il valore qui per provare se il tuo algoritmo funziona!
 
+
+for (const price of prices)
+        tot_carello += price;
+/***************************    IS AMBASSADOR   ************************/
 if (utenteCheEffettuaLAcquisto.isAmbassador) {
 
     console.log(`${utenteCheEffettuaLAcquisto.name} è un ambassador`);
-    for (let i = 0; i < prices.length; i++)
-        tot_carello += prices[i];
-
     tot_carello_amb = tot_carello - (tot_carello * 30) / 100;
 
     console.log(`Il carrello scontato (spedizone esclusa) è di: ${tot_carello_amb}\n\n\n`);
@@ -68,8 +76,6 @@ if (utenteCheEffettuaLAcquisto.isAmbassador) {
 
 } else {
     console.log(`${utenteCheEffettuaLAcquisto.name} non è un ambassador`);
-    for (let i = 0; i < prices.length; i++)
-        tot_carello += prices[i];
     
     if (tot_carello > 100)
         console.log(`La spedizione è gratis!\n Il carrello è di: ${tot_carello}\n\n\n`);
@@ -78,15 +84,17 @@ if (utenteCheEffettuaLAcquisto.isAmbassador) {
         console.log(`Devi pagare la spedizone\nIl carrello (spedizione inclusa) è di: ${tot_carello + shippingCost}\n\n\n`);
 }
 
-utenti.push(marco, paul, amy, fernando);
+/***************************   USERS LIST  ************************/
 
-for (let i = 0; i < utenti.length; i++) {
+utenti.push(marco, paul, amy, fernando, simone);
+
+for (const user of utenti) {
     
-    if (utenti[i].isAmbassador) {
-        console.log(`${utenti[i].name} ${utenti[i].lastName} è un ambassador`);
-        amb.push(utenti[i]);
+    if (user.isAmbassador) {
+        console.log(`${user.name} ${user.lastName} è un ambassador`);
+        amb.push(user);
     } else {
-        console.log(`${utenti[i].name} ${utenti[i].lastName} non è un ambassador`);
+        console.log(`${user.name} ${user.lastName} non è un ambassador`);
     }
 }
 
